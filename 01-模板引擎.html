@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+</html>
+<script>
+	
+	// var str = '<ul><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li></ul>';
+	
+	var obj = {
+		xinqing : '高兴',
+		money : 5,
+		id : 18
+	}
+	// var str = '<h1>今天心情'+obj.xinqing+'，因为花了'+obj.money+'块钱，买了个Ipone' + obj.id + '</h1>';
+	
+	//模板字符 @对象属性@ @xinqing@
+	var str = '<h1>今天心情@xinqing@，因为花了@money@块钱，买了个Ipone@id@</h1>';
+	
+	//字符串的替换
+	//var newStr = str.replace('@xinqing@', obj.xinqing)
+	//结合正则
+	var newStr = str.replace(/@([a-z0-9_]+)@/g, function(match, $1){
+		console.log(match);
+		console.log($1);
+		console.log(typeof $1);
+		//返回的正好是 $1 的属性值
+		return obj[$1];
+	});
+	
+	console.log(newStr);
+	
+</script>

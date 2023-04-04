@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script>
+	
+	var obj = {
+		name : '小明',
+		age : 18
+	}
+	
+	var str1 = '我叫'+ obj.name +',今年' + obj.age;
+	console.log(str1);
+	
+	//ES6字符串 反引号 ``;  
+	//可以使用默认提供的模板符号 ${JS环境}
+	var score = 45;
+	var str2 = `
+		我叫${obj.name},今年${obj.age},
+		我是${true ? '男' : '女'},
+		考试得分为${score}
+	`;
+	console.log(str2);
+	
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<!-- 用来给js做模板 可以换行，有清楚的格式-->
+		<script id="template" type="text/template">
+			<ul>
+				<li><a href="">@xinqing@</a></li>
+				<li><a href="">@money@</a></li>
+				<li><a href="">@id@</a></li>
+			</ul>
+		</script>
+		
+	</body>
+</html>
+<script>
+	
+	var obj = {
+		xinqing : '高兴',
+		money : 5,
+		id : 18
+	};
+	
+	//页面中获取模板
+	var stringTemplate = document.querySelector('#template').innerHTML;
+	
+	// var str = '<h1>今天心情@xinqing@，因为花了@money@块钱，买了个Ipone@id@</h1>';
+	
+	console.log(compile(stringTemplate, obj)); //得到一个OK结构
+	
+	//模板字符串方法
+	function compile(str, obj){
+		return str.replace(/@([a-z0-9_]+)@/g, function(match, $1){
+			//返回的正好是 $1 的属性值
+			return obj[$1];
+		});
+	};
+	
+</script>
