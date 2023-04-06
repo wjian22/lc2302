@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{margin: 0px; padding:0px;}
+			body, html{
+				height: 2000px;
+			}
+		</style>
+	</head>
+	<body>
+		
+	</body>
+</html>
+<script>
+	
+	//浏览器高度，放外面会多一个窗口尺寸改变事件
+	
+	// 浏览器一个页面卷动事件
+	window.onscroll = function(){
+		
+		//浏览器高度
+		var windowH = window.innerHeight;	
+		//console.log('滚动出去的值');
+		var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+		// 页面高度
+		var pageH = document.body.clientHeight || document.documentElement.clientHeight;
+		
+		// 验证到底了
+		// if(windowH + scrollTop == pageH){
+			//快到底了
+		if((windowH + scrollTop ) / pageH >= 0.8){
+			// 总高度去撑高一下，相于是加载出来的商品撑高
+			document.body.style.height = '2500px';
+			console.log('快到底了');
+		};
+		
+	};
+	
+</script>

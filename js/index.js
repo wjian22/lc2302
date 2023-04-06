@@ -1,44 +1,5 @@
 
-//全局的公共地址
-var BASE_URL = 'http://159.75.89.136:3000';
 
-// 请求分类导航的数据
-(function(){
-	var oNav = document.querySelector('.nav');
-	var navTem = document.querySelector('#navTem').innerHTML;
-	//console.log(navTem)
-	
-	//发起ajax请求
-	wjAjax.get(BASE_URL + '/api_cat', {}, function(res){
-		//验证数据
-		if(res.code != 0){
-			console.log(res);
-			return;
-		};
-		var arrNav = res.data;
-		console.log(arrNav);
-		//进行DOM组装渲染  <li><a href="">家居</a></li> 拼字符串方法
-		var str = '';
-		for(var i = 0; i < arrNav.length; i++){
-			// str += '<li><a href="">' + arrNav[i].cat_name + '</a>';
-			str += wjCompile(navTem, arrNav[i]);
-		};
-		//添加到nav里面
-		oNav.innerHTML = str;
-		
-		// for(var i = 0; i < arrNav.length; i++){
-		// 	// 创建元素
-		// 	var li = document.createElement('li');
-		// 	li.innerHTML = '<a href="">'+arrNav[i].cat_name+'</a>';
-		// 	//appendChild方法 添加只能是节点
-		// 	// oNav.appendChild('<span>span<span>');
-		// 	oNav.appendChild(li);
-		// };
-		
-		
-	});
-	
-})();
 
 // 轮播图
 (function(){
@@ -81,14 +42,41 @@ var BASE_URL = 'http://159.75.89.136:3000';
 	var oHotList = document.querySelector('.hot-list');
 	var oMore = document.querySelector('.more');
 	//当前页面
-	var nowPage = 1;
+	var nowPage = 544;
 	
 	//先调用一次
 	getHot(nowPage);
 	
-	//定义一把锁
+	// //定义一把锁
 	var lock = false;
-	// 点击事件
+	
+	// 滚动到底部加载下一页
+	// window.onscroll = function(){
+	// 	//浏览器高度
+	// 	var windowH = window.innerHeight;	
+	// 	//console.log('滚动出去的值');
+	// 	var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+	// 	// 页面高度
+	// 	var pageH = document.body.clientHeight || document.documentElement.clientHeight;
+		
+	// 	// 验证
+	// 	if((windowH + scrollTop)/pageH >= 0.9){
+	// 		//console.log('快到底了111')
+	// 		// 验证锁
+	// 		if(lock){return};
+	// 		// 上锁
+	// 		lock = true;
+	// 		//console.log('快到底了222')
+	// 		// 加载下一页
+	// 		nowPage++;
+	// 		console.log(nowPage);
+	// 		getHot(nowPage);
+	// 	};
+		
+	// };
+	
+	
+	// // 点击更多事件
 	oMore.onclick = function(){
 		if(lock){return};
 		// 上锁
@@ -109,11 +97,18 @@ var BASE_URL = 'http://159.75.89.136:3000';
 			console.log(res);
 			//可以拼装
 			var goodsArr = res.data;
+			//如果goodsArr数组长度 == 0 证明没有更多数据了
+			if(goodsArr.length == 0){
+				// 交互
+				oMore.innerHTML = '没有更多了~~~';
+				return;
+			}
 			
 			for(var i = 0 ; i < goodsArr.length; i++){
 				var li = document.createElement('li');
+				// 图片默认为 loading.gif 真正的值要绑定给 wj-img-loading
 				li.innerHTML = `
-					<img src="${goodsArr[i].goods_thumb}" alt="">
+					<img src="img/loading.gif" wj-img-loading="${goodsArr[i].goods_thumb}" alt="">
 					<p>${goodsArr[i].goods_name}</p>
 					<p>${goodsArr[i].price}</p>
 					<p>${goodsArr[i].goods_desc}</p>
@@ -123,6 +118,9 @@ var BASE_URL = 'http://159.75.89.136:3000';
 				// 每遍历 一次就要添加一次
 				oHotList.appendChild(li);
 			};	
+			
+			//调用图片预加载方法
+			wjImgLoading('.hot-list');
 			
 			// 开锁
 			lock = false;

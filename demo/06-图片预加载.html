@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- 默认要设置为动图 -->
+		<!-- 把真实地址不绑定给src ，用一个自定义属性进行存 -->
+		<div class="hot-list">
+			<img id="img1" src="../img/loading.gif" wj-img-loading="https://imgs-qn.iliangcang.com/ware/goods/big/2/261/261672.jpg" style="width: 200px;" alt="">
+					<img id="img1" src="../img/loading.gif" wj-img-loading="https://imgs-qn.iliangcang.com/ware/goods/big/2/265/265242.jpg" style="width: 200px;" alt="">
+					<img id="img1" src="../img/loading.gif" wj-img-loading="https://imgs-qn.iliangcang.com/ware/goods/big/2/280/280422.jpg" style="width: 200px;" alt="">
+		</div>
+		
+		<img src="../img/283895.jpg" style="width:200px; height: 200px; background-color: antiquewhite;">
+	</body>
+</html>
+<script>
+	// 加载图片过程，一截一截的，不直接给到页面img元素
+	// 可以使用JS去加载这个过程，当图片加载完毕
+	// 加载完毕：证明当前图片已经缓存在本地
+	// 再次设置img的值，http有缓存功能 304 优先使用本地图片
+	
+	// 服务器图片 
+	var srcVal = 'https://imgs-qn.iliangcang.com/ware/goods/big/2/261/261672.jpg';
+	
+	//指定是哪个下面的图片
+	wjImgLoading('.hot-list');
+	
+	function wjImgLoading(parent){
+		//获取所有的父级下面的图片元素
+		var all = document.querySelectorAll(parent + ' [wj-img-loading]');
+		//'.hot-list [wj-img-loading]'
+		//拿到每个图片元素上面的 wj-img-loading 属性值
+		console.log(all);
+		for(var i = 0; i < all.length; i++){
+			var nowSrc = all[i].getAttribute('wj-img-loading');
+
+			(function(m){
+				
+				//all[i].wj-img-...
+				var oImg = new Image();
+				oImg.src = nowSrc;
+				oImg.onload = function(){
+					// 加载完毕
+					console.log(m);
+					// all[m].src = this.src;
+					all[m].src = all[m].getAttribute('wj-img-loading');
+				};
+				
+			})(i);
+		}
+	};
+	
+	// 创建一个IMG元素
+	// var oImg = document.createElement('img');
+	var oImg = new Image();
+	//console.log(oImg);
+	// 给IMG的src一旦赋值，请会去真正请求
+	oImg.src = srcVal;
+	//什么时候请求完，监听它的加载完毕事件
+	//事件onload 执行，证明图片已经缓存到本地了
+	oImg.onload = function(){
+		console.log('加载完了');
+		//重新设置下页面img的src值
+		document.querySelector('#img1').src = srcVal;
+	};
+	
+	oImg.onerror = function(){
+		console.log('加载错误')
+	}
+	
+	
+</script>

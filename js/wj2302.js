@@ -16,6 +16,8 @@
 			  wjAjax.get(地址, {即使没有参数也要是一个空对象}, 回调函数)
 				
 		六，模板字符串方法 wjCompile(str, obj)
+		
+		七，图片预加载
 				
 		缓冲公式：
 	
@@ -239,6 +241,31 @@ function wjCompile(str, obj){
 	});
 };
 
+//七，图片预加载
+function wjImgLoading(parent){
+	//获取所有的父级下面的图片元素
+	var all = document.querySelectorAll(parent + ' [wj-img-loading]');
+	//'.hot-list [wj-img-loading]'
+	//拿到每个图片元素上面的 wj-img-loading 属性值
+	console.log(all);
+	for(var i = 0; i < all.length; i++){
+		var nowSrc = all[i].getAttribute('wj-img-loading');
+
+		(function(m){
+			
+			//all[i].wj-img-...
+			var oImg = new Image();
+			oImg.src = nowSrc;
+			oImg.onload = function(){
+				// 加载完毕
+				console.log(m);
+				// all[m].src = this.src;
+				all[m].src = all[m].getAttribute('wj-img-loading');
+			};
+			
+		})(i);
+	}
+};
 
 //三，缓冲公式
 var Tween = {
