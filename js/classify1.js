@@ -11,30 +11,9 @@ console.log(catId);
 	getGoods(page);
 	
 	//调用总页数和分页器
-	getMaxPage(function(maxCount){
+	getMaxPage();
 		
-		$('.pagination').pagination({
-			pageCount : maxCount,
-			current : 1,
-			activeCls : 'a',
-			prevContent : '上一页',
-			nextContent : '下一页',
-			mode : 'fixed',
-			count : 6,
-			coping : true,
-			homePage : '首页',
-			endPage : '末页',
-			isHide : true,
-			keepShowPN : true,
-			jump : true,
-			callback : function(idx){
-				//拿到当前面做参数传递
-				getGoods(idx.getCurrent())
-			}
-		});
-		
-	});
-		
+	
 	// 封装商品请求方法
 	function getGoods(page){
 		
@@ -75,7 +54,7 @@ console.log(catId);
 	
 	//在调用分页器之前，要得到当前分类的总页数
 	// 获取总页数
-	function getMaxPage(callback){
+	function getMaxPage(){
 		wjAjax.get(BASE_URL + '/api_goods', {page : 1, pagesize:3, catId : catId}, function(res){
 				
 				console.log(res);
@@ -84,13 +63,32 @@ console.log(catId);
 					return;
 				};
 				
+				//获取总页数
+				res.page;
+				
 				// 这里才能调用分页器
-				// 调用回调函数
-				callback(res.page);
+				$('.pagination').pagination({
+					pageCount : res.page,
+					current : 1,
+					activeCls : 'a',
+					prevContent : '上一页',
+					nextContent : '下一页',
+					mode : 'fixed',
+					count : 6,
+					coping : true,
+					homePage : '首页',
+					endPage : '末页',
+					isHide : true,
+					keepShowPN : true,
+					jump : true,
+					callback : function(idx){
+						//拿到当前面做参数传递
+						getGoods(idx.getCurrent())
+					}
+				});
 				
 		});
 	};
-	
 	
 })();
 

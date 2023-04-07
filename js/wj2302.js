@@ -18,6 +18,8 @@
 		六，模板字符串方法 wjCompile(str, obj)
 		
 		七，图片预加载
+		
+		八，获取地址栏参数值
 				
 		缓冲公式：
 	
@@ -265,6 +267,25 @@ function wjImgLoading(parent){
 			
 		})(i);
 	}
+};
+
+//八，获取地址栏参数值
+function getUrlVal1(property){
+	var str = 'catId=0082&page=2&username=xiaoming'
+	var arr = str.split('&');
+	var obj = {};
+	for(var i = 0; i < arr.length; i++){
+		var innArr = arr[i].split('=');
+		console.log(innArr);
+		obj[innArr[0]] = innArr[1];
+	};
+	return property in obj ? obj[property] : null;
+};
+
+function getUrlVal2(property){
+	var str = window.location.search.replace('?', '');
+	var re = new RegExp('(^|&)' + property + '=([^&]*)(&|$)');
+	return str.match(re) && str.match(re)[2];
 };
 
 //三，缓冲公式

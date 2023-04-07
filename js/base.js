@@ -22,7 +22,7 @@ var BASE_URL = 'http://159.75.89.136:3000';
 			// str += '<li><a href="">' + arrNav[i].cat_name + '</a>';
 			str += `
 				<li>
-				<a href="classify.html?catId=${arrNav[i].cat_id}" target="_blank">${arrNav[i].cat_name}</a>
+				<a href="classify.html?catId=${arrNav[i].cat_id}">${arrNav[i].cat_name}</a>
 				</li>
 			`;
 		};

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.pagination{
+				margin: 50px;
+				display: flex;
+			}
+			.pagination li{
+				cursor: pointer;
+				font-weight: bold;
+				border-radius: 6px;
+				padding: 2px 8px;
+				margin: 0px 10px;
+				background-color: #333;
+				text-align: center;
+				line-height: 20px;
+				font-size: 12px;
+				color: white;
+				list-style: none;
+				user-select: none;
+			}
+			.pagination li:hover{
+				background-color: orangered;
+			}
+			.pagination .active{
+				background-color: orangered;
+			}
+		</style>
+	</head>
+	<body>
+		<ul class="pagination">
+			<li class="active">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>...</li>
+			<li>21</li>
+			<li>22</li>
+		</ul>
+	</body>
+</html>
+<script>
+	
+	var aLi = document.querySelectorAll('.pagination li');
+	
+	// 一定要明确当前总页数
+	var pageMax = 15;
+	// 设置默认值
+	aLi[0].innerHTML = 1;
+	aLi[1].innerHTML = 2;
+	aLi[2].innerHTML = 3;
+	aLi[3].innerHTML = 4;
+	aLi[4].innerHTML = '...';
+	aLi[5].innerHTML = pageMax - 1;
+	aLi[6].innerHTML = pageMax;
+	
+	// 批量点击
+	for(var i = 0; i < aLi.length; i++){
+		
+		//不要下标
+		aLi[i].onclick = function(){
+			//如果点的是三个点不做任何交互
+			//获取当前元素内的值，验证
+			var nowPage = this.innerHTML;
+			console.log(nowPage);
+			if(nowPage == '...'){return};
+			
+			nowPage = parseInt(this.innerHTML);
+			
+			//排它
+			for(var i = 0; i < aLi.length; i++){
+				aLi[i].className = '';
+			};
+			
+			//分三种情况：点击了123
+			//分三种情况：点击了4-倒数4
+			//分三种情况：点击了最后三页
+			if(nowPage > 0 && nowPage <= 3){
+				//设置
+				aLi[0].innerHTML = 1;
+				aLi[1].innerHTML = 2;
+				aLi[2].innerHTML = 3;
+				aLi[3].innerHTML = 4;
+				aLi[4].innerHTML = '...';
+				aLi[5].innerHTML = pageMax - 1;
+				aLi[6].innerHTML = pageMax;
+				//设置交互为当前项
+				this.className = 'active';
+			}else if(nowPage > 3 && nowPage < pageMax - 2){
+				//设置
+				aLi[0].innerHTML = 1;
+				aLi[1].innerHTML = '...';
+				aLi[2].innerHTML = nowPage - 1;
+				aLi[3].innerHTML = nowPage;
+				aLi[4].innerHTML = nowPage + 1;
+				aLi[5].innerHTML = '...';
+				aLi[6].innerHTML = pageMax;
+				
+				// 永远为中间项 设置红
+				aLi[3].className = 'active';
+				
+			}else if(nowPage >= pageMax - 2 && nowPage <= pageMax){
+				//设置
+				aLi[0].innerHTML = 1;
+				aLi[1].innerHTML = 2;
+				aLi[2].innerHTML = '...';
+				aLi[3].innerHTML = pageMax - 3;
+				aLi[4].innerHTML = pageMax - 2;
+				aLi[5].innerHTML = pageMax - 1;
+				aLi[6].innerHTML = pageMax;
+				
+				//设置当前项
+				if(nowPage == pageMax){
+					aLi[6].className = 'active';
+				}else if(nowPage == pageMax - 1){
+					aLi[5].className = 'active';
+				}else if(nowPage == pageMax - 2){
+					aLi[4].className = 'active';
+				}
+			}
+			
+		};
+		
+	}
+	
+</script>

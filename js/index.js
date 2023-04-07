@@ -108,12 +108,14 @@
 				var li = document.createElement('li');
 				// 图片默认为 loading.gif 真正的值要绑定给 wj-img-loading
 				li.innerHTML = `
-					<img src="img/loading.gif" wj-img-loading="${goodsArr[i].goods_thumb}" alt="">
-					<p>${goodsArr[i].goods_name}</p>
-					<p>${goodsArr[i].price}</p>
-					<p>${goodsArr[i].goods_desc}</p>
-					<p>${goodsArr[i].star_number}</p>
-					<p>${goodsArr[i].brand_name}</p>
+					<a href="">
+						<img src="img/loading.gif" wj-img-loading="${goodsArr[i].goods_thumb}" alt="">
+						<p>${goodsArr[i].goods_name}</p>
+						<p>${goodsArr[i].price}</p>
+						<p>${goodsArr[i].goods_desc}</p>
+						<p>${goodsArr[i].star_number}</p>
+						<p>${goodsArr[i].brand_name}</p>
+					</a>
 				`;
 				// 每遍历 一次就要添加一次
 				oHotList.appendChild(li);
