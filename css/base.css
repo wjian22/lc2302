@@ -23,22 +23,29 @@ img{vertical-align: bottom;}
 }
 
 /* 导航 */
-.nav{
+.nav-content{
 	width:1000px;
 	height: 40px;
 	background: #666;
 	margin: 0px auto;
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
+}
+.nav{
+	display: flex;
 }
 .nav li{
-	margin: 0px 10px;
+	margin: 0px 5px;
 }
 .nav li a{
 	color: white;
 }
 .nav li a:hover{
-	color: orange;
+	color: orangered;
+}
+.active-nav{
+	color: orangered;
 }
 
 

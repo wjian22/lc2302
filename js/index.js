@@ -17,7 +17,7 @@
 		var bannerArr = res.data;
 		var str = ``;
 		for(var i = 0; i < bannerArr.length; i++){
-			str += `<li><a href=""><img src="${bannerArr[i].goods_thumb}" alt=""></a></li>`;
+			str += `<li><a target="_blank" href="product.html?goodsId=${bannerArr[i].goods_id}"><img src="${bannerArr[i].goods_thumb}" alt=""></a></li>`;
 		};
 		console.log(str)
 		//添加到页面
@@ -108,7 +108,7 @@
 				var li = document.createElement('li');
 				// 图片默认为 loading.gif 真正的值要绑定给 wj-img-loading
 				li.innerHTML = `
-					<a href="">
+					<a target="_blank" href="product.html?goodsId=${goodsArr[i].goods_id}">
 						<img src="img/loading.gif" wj-img-loading="${goodsArr[i].goods_thumb}" alt="">
 						<p>${goodsArr[i].goods_name}</p>
 						<p>${goodsArr[i].price}</p>

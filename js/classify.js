@@ -54,7 +54,7 @@ console.log(catId);
 				// 图片默认为 loading.gif 真正的值要绑定给 wj-img-loading
 				str += `
 					<li>
-						<a href="">
+						<a target="_blank" href="product.html?goodsId=${goodsArr[i].goods_id}">
 							<img src="img/loading.gif" wj-img-loading="${goodsArr[i].goods_thumb}" alt="">
 							<p>${goodsArr[i].goods_name}</p>
 							<p>${goodsArr[i].price}</p>

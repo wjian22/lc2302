@@ -22,12 +22,23 @@ var BASE_URL = 'http://159.75.89.136:3000';
 			// str += '<li><a href="">' + arrNav[i].cat_name + '</a>';
 			str += `
 				<li>
-				<a href="classify.html?catId=${arrNav[i].cat_id}">${arrNav[i].cat_name}</a>
+					<a href="classify.html?catId=${arrNav[i].cat_id}" nav-class="${arrNav[i].cat_id}">${arrNav[i].cat_name}</a>
 				</li>
 			`;
 		};
 		//添加到nav里面
 		oNav.innerHTML = str;
+		
+		// 获取比对
+		var aNav = document.querySelectorAll('.nav [nav-class]');
+		// 获取地址栏ID号
+		var catId = getUrlVal2('catId');
+		for(var i = 0 ; i < aNav.length; i++){
+			if(aNav[i].getAttribute('nav-class') == catId){
+				aNav[i].style.color = 'orangered';
+				break;
+			};
+		};
 		
 		// for(var i = 0; i < arrNav.length; i++){
 		// 	// 创建元素
@@ -42,3 +53,24 @@ var BASE_URL = 'http://159.75.89.136:3000';
 	});
 	
 })();
+
+// 搜索
+(function(){
+	
+	var oKeyword = document.querySelector('.keyword');
+	var oBtn = document.querySelector('.key-btn');
+	console.log(oKeyword)
+	//js 实现跳转 location
+	oBtn.onclick = function(){
+		var val = oKeyword.value;
+		if(val == ''){
+			alert('请输入要搜索的内容');
+			return;
+		};
+		
+		// 实现跳转到搜索页面，还搜索参数过去
+		window.location.href = `search.html?keyword=${val}`;
+	};
+	
+})();
+

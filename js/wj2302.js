@@ -271,12 +271,11 @@ function wjImgLoading(parent){
 
 //八，获取地址栏参数值
 function getUrlVal1(property){
-	var str = 'catId=0082&page=2&username=xiaoming'
+	var str = window.location.search.replace('?', '');
 	var arr = str.split('&');
 	var obj = {};
 	for(var i = 0; i < arr.length; i++){
 		var innArr = arr[i].split('=');
-		console.log(innArr);
 		obj[innArr[0]] = innArr[1];
 	};
 	return property in obj ? obj[property] : null;
