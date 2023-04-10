@@ -1,6 +1,7 @@
 
 (function(){
 	var oBanner = document.querySelector('.banner');
+	var oProduct = document.querySelector('.product');
 	var goodsName = document.querySelector('.goods-name');
 	var goodsPrice = document.querySelector('.goods-price');
 	var desc = document.querySelector('.desc');
@@ -11,6 +12,7 @@
 	
 	// 发起请求
 	wjAjax.get(BASE_URL + '/api_goods', {goodsId : goodsId}, function(res){
+		console.log(res);
 		if(res.code != 0){
 			console.log(res);
 			return;
@@ -18,7 +20,11 @@
 		
 		//拿到数据
 		var goods = res.data[0];
-		console.log(goods);
+		// 验证商品是否存在
+		if(!goods){
+			oProduct.innerHTML = '商品已下架~~~';
+			return;
+		};
 		
 		//dom 轮播图片
 		var strImg = '';

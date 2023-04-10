@@ -1,6 +1,56 @@
 //全局的公共地址
 var BASE_URL = 'http://159.75.89.136:3000';
 
+// 验证登录状态
+(function(){
+	
+	//获取本地 token
+	var token = localStorage.getItem('token');
+	var username = localStorage.getItem('username');
+	
+	var oLoginBtn = document.querySelector('.login-btn');
+	var oRegBtn = document.querySelector('.register-btn');
+	var oWel = document.querySelector('.welcome');
+	var oLoginOutBtn = document.querySelector('.loginout');
+	var oCartBtn = document.querySelector('.cart-btn');
+	
+	//校验
+	if(token && username){
+		oLoginBtn.style.display = 'none';
+		oRegBtn.style.display = 'none';
+		oLoginOutBtn.style.display = 'inline';
+		oWel.style.display = 'inline';
+		oWel.innerHTML = '欢迎，' + username;
+	}else{
+		oLoginBtn.style.display = 'inline';
+		oRegBtn.style.display = 'inline';
+		oLoginOutBtn.style.display = 'none';
+		oWel.style.display = 'none';
+	};
+	
+	//登出
+	oLoginOutBtn.onclick = function(){
+		// 清除本地存储
+		localStorage.removeItem('token');
+		localStorage.removeItem('username');
+		// 跳转 首页 登录
+		location.href = 'index.html';
+	};
+	
+	//点击购物车按钮
+	oCartBtn.onclick = function(){
+		//验证状态
+		if(token && username){
+			// 跳转到购物车页面
+			location.href = 'cart.html';
+		}else{
+			alert('请登录');
+		};
+	};
+	
+})();
+
+
 // 请求分类导航的数据
 (function(){
 	var oNav = document.querySelector('.nav');
