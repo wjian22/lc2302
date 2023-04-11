@@ -35,9 +35,19 @@ var BASE_URL = 'http://159.75.89.136:3000';
 			// 记录设置登录状态 把用户信息存储到本地
 			localStorage.setItem('username', res.username);
 			localStorage.setItem('token', res.user_id);
-			//登录成功了 跳转到首页
-			location.href = 'index.html';
 			
+			// 获取当前路径参数值
+			var catId = getUrlVal1('catId');
+			var goodsId = getUrlVal1('goodsId');
+			
+			//登录成功了 跳转到首页或者其它页面		
+			if(catId){
+				location.href = 'classify.html?catId=' + catId;
+			}else if(goodsId){
+				location.href = 'product.html?goodsId=' + goodsId;
+			}else{
+				location.href = 'index.html';
+			};			
 		})
 	}
 	

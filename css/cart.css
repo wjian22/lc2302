@@ -1,0 +1,87 @@
+.cart-title{
+	width:1000px;
+	text-align: center;
+	margin: 30px auto 20px;
+	font-size: 16px;
+	line-height: 40px;
+	color: #333;
+	/* font-weight: normal; */
+	border-bottom: 1px solid #666;
+}
+
+.table{
+	width:1000px;
+	margin: 0px auto 30px;
+	text-align: center;
+}
+.table tr th:first-of-type, .table tr td:first-of-type{
+	text-align: left;
+}
+.table tr th{
+	border-bottom: 1px solid #999;
+	line-height: 40px;
+	font-size: 15px;
+	color: #333;
+}
+.table tr td{
+	padding: 10px 0px;
+	font-size: 13px;
+	color: #666;
+	border-bottom: 1px solid #eee;
+}
+
+.table tr{
+}
+
+.table tr td:nth-of-type(1){
+	width:200px;
+}
+.table tr td:nth-of-type(2){
+	width:200px;
+}
+.table tr td:nth-of-type(3){
+	width:200px;
+}
+
+
+.table tr td img{
+	width: 70px;
+	vertical-align: top;
+}
+
+.price-content{
+	width:1000px;
+	margin: 0px auto;
+	text-align: center;
+}
+
+.account{
+	margin: 20px 0px;
+	width:170px;
+	height: 30px;
+	background: #7FA6C5;
+	border: none;
+	line-height: 30px;
+	font-size: 14px;
+	color: white;
+}
+.account:hover{
+	background: #406787;
+}
+.add, .reduce, .num{
+	display: inline-block;
+	user-select: none;
+}
+.add, .reduce{
+	width:20px;
+	font-weight: bold;
+	margin: 0px 10px;
+	border: 1px solid #eee;
+	cursor: pointer;
+}
+.add:hover, .reduce:hover{
+	border: 1px solid #999;
+}
+.del{
+	color: #3F749E;
+}

@@ -1,12 +1,35 @@
 //全局的公共地址
 var BASE_URL = 'http://159.75.89.136:3000';
+//获取本地 token
+var TOKEN = localStorage.getItem('token');
+var USERNAME = localStorage.getItem('username');
+
+// 点击登录按钮
+(function(){
+	var loginBtn = document.querySelector('.login-btn');
+	
+	// 点击
+	loginBtn.onclick = function(){
+		
+		// 获取当前路径参数值 
+		var catId = getUrlVal1('catId');
+		var goodsId = getUrlVal1('goodsId');
+		//console.log('catid：'+catId, 'goodsid:'+goodsId)
+		if(catId){
+			location.href = 'login.html?catId=' + catId;
+		}else if(goodsId){
+			location.href = 'login.html?goodsId=' + goodsId;
+		}else{
+			location.href = 'login.html';
+		};
+		
+	};
+	
+	
+})();
 
 // 验证登录状态
 (function(){
-	
-	//获取本地 token
-	var token = localStorage.getItem('token');
-	var username = localStorage.getItem('username');
 	
 	var oLoginBtn = document.querySelector('.login-btn');
 	var oRegBtn = document.querySelector('.register-btn');
@@ -15,12 +38,12 @@ var BASE_URL = 'http://159.75.89.136:3000';
 	var oCartBtn = document.querySelector('.cart-btn');
 	
 	//校验
-	if(token && username){
+	if(TOKEN && USERNAME){
 		oLoginBtn.style.display = 'none';
 		oRegBtn.style.display = 'none';
 		oLoginOutBtn.style.display = 'inline';
 		oWel.style.display = 'inline';
-		oWel.innerHTML = '欢迎，' + username;
+		oWel.innerHTML = '欢迎，' + USERNAME;
 	}else{
 		oLoginBtn.style.display = 'inline';
 		oRegBtn.style.display = 'inline';
@@ -40,7 +63,7 @@ var BASE_URL = 'http://159.75.89.136:3000';
 	//点击购物车按钮
 	oCartBtn.onclick = function(){
 		//验证状态
-		if(token && username){
+		if(TOKEN && USERNAME){
 			// 跳转到购物车页面
 			location.href = 'cart.html';
 		}else{
@@ -109,7 +132,7 @@ var BASE_URL = 'http://159.75.89.136:3000';
 	
 	var oKeyword = document.querySelector('.keyword');
 	var oBtn = document.querySelector('.key-btn');
-	console.log(oKeyword)
+	// console.log(oKeyword)
 	//js 实现跳转 location
 	oBtn.onclick = function(){
 		var val = oKeyword.value;

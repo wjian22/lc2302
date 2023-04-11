@@ -9,7 +9,7 @@
 	
 	//请求关键字内容
 	wjAjax.get(BASE_URL + '/api_search', {keywords : keyword, page : 1, pagesize : 3}, function(res){
-		
+		console.log(res);
 		if(res.code != 0){
 			console.log(res);
 			return;

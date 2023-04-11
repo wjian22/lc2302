@@ -12,3 +12,20 @@
 .desc img{
 	width:70%;
 }
+.number-content{
+	display: flex;
+	margin: 20px;
+}
+.reduce, .add{
+	padding: 3px 10px;
+	background: #999;
+	cursor: pointer;
+	user-select: none;
+}
+.num{
+	width:40px;
+	height: 24px;
+	text-align: center;
+	outline: none;
+	margin: 0 10px;
+}
