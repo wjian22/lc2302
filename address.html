@@ -3,8 +3,129 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
+		<link rel="stylesheet" href="css/base.css">
+		<link rel="stylesheet" href="css/address.css">
 	</head>
 	<body>
-		地址页面
+		<!-- 头部 -->
+		<div class="header">
+			<a href="index.html">logo</a>
+			<!-- 右边 -->
+			<div>
+				<a href="javascript:;" class="login-btn">登录</a>
+				<a href="javascript:;" class="welcome">欢迎，xiaohua</a>
+				
+				<a href="register.html" class="register-btn">注册</a>
+				<a href="javascript:;" class="loginout">退出</a>
+				
+				<a href="javascript:;" class="cart-btn">购物车</a>
+			</div>
+		</div>
+		
+		<!-- 导航 -->
+		<div class="nav-content">
+			<!-- 导航列表 -->
+			<ul class="nav"></ul>	
+			<div class="search">
+				<input type="text" class="keyword"/>
+				<input type="button" value="搜索" class="key-btn"/>
+			</div>
+		</div>
+		
+		<!-- 地址 -->
+		<div class="address-content">
+			<h1 class="address-title">收货地址</h1>
+			<ul class="address-list">
+				<li class="address-active">
+					<div class="uname-content">
+						<div class="uname-phone">
+							<span>姓名</span>
+							<span>13789888888</span>
+						</div>
+						<p>省市区</p>
+						<p>详细地址</p>
+					</div>
+					
+					<div class="address-default">
+						<span>默认地址</span>
+						<div>
+							<span>编辑</span>
+							<span>删除</span>
+						</div>
+					</div>
+				</li>
+				
+				<li>
+					<div class="uname-content">
+						<div class="uname-phone">
+							<span>姓名</span>
+							<span>13789888888</span>
+						</div>
+						<p>省市区</p>
+						<p>详细地址</p>
+					</div>
+					
+					<div class="address-default">
+						<span>默认地址</span>
+						<div>
+							<span>编辑</span>
+							<span>删除</span>
+						</div>
+					</div>
+				</li>
+				
+				
+			</ul>
+		</div>
+		
+		<!-- 新地址 -->
+		<div class="new-address">
+			
+			<table class="table">
+				<tr>
+					<td>收货人姓名</td>
+					<td><input class="takename" type="text"/></td>
+				</tr>
+				<tr>
+					<td>省/市/区</td>
+					<td class="select-address">
+						<select class="province">
+							
+						</select>
+						<select class="city">
+							<option value="">--请选择城市--</option>
+						</select>
+						<select class="district">
+							<option value="">--请选择区--</option>
+						</select>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>详细地址</td>
+					<td>
+						<input type="text" class="streetname"/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>手机号</td>
+					<td><input type="text" class="tel"></td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td><span class="save-address">保存地址</span></td>
+				</tr>
+			</table>
+			
+		</div>
+		
+		<!-- 底部 -->
+		<div class="footer">底部</div>
+		
 	</body>
 </html>
+<script src="js/wj2302.js"></script>
+<script src="js/base.js"></script>
+<script src="js/address.js"></script>
