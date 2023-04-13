@@ -41,9 +41,13 @@
 	justify-content: space-between;
 }
 
-.address-list .address-active{
+.address-list>li:first-of-type{
 	border-color: #7FA6C5;
 }
+.address-list>li:first-of-type .default-btn{
+	color: #7FA6C5;
+}
+
 
 .address-list>li:hover{
 	border-color: #7FA6C5;
